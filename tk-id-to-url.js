@@ -7,39 +7,41 @@
 // @match        http://pub.alimama.com/promo/*
 // @grant        none
 // ==/UserScript==
- 
-(function() {
-    'use strict';
- 
-    let form;
-    let input;
- 
-    function ready() {
-        return new Promise((resolve, reject) => {
-            let timer = setInterval(() => {
-                form = document.querySelector('.input-group');
-                if (form) {
-                    clearInterval(timer);
-                    input = form.querySelector('.search-inp');
-                    resolve();
-                }
-            }, 500);
-        });
-    }
- 
-    function onInput() {
-        if ((/^\s*(\d{8,20})\s*$/).test(input.value)) {
-            input.value = generateUrl(input.value);
+
+(function () {
+  'use strict'
+
+  let form
+  let input
+
+  function ready() {
+    return new Promise((resolve, reject) => {
+      let timer = setInterval(() => {
+        form = document.querySelector('.input-group')
+        if (form) {
+          clearInterval(timer)
+          input = form.querySelector('.search-inp')
+          resolve()
         }
+      }, 500)
+    })
+  }
+
+  function onInput() {
+    if ((/^\s*(\d{8,20})\s*$/).test(input.value)) {
+      input.value = generateUrl(input.value)
     }
- 
-    function generateUrl(id) {
-        return 'https://item.taobao.com/item.htm?id=' + id;
-    }
- 
+  }
+
+  function generateUrl(id) {
+    return 'https://item.taobao.com/item.htm?id=' + id
+  }
+
+  ; (async () => {
     ready().then(() => {
-        input.addEventListener('input', onInput);
+      input.addEventListener('input', onInput)
     }).catch(err => {
-        console.error(err);
-    });
-})();
+      console.error(err)
+    })
+  })()
+})()
