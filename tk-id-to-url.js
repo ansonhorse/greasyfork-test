@@ -34,6 +34,7 @@
   }
 
   function generateUrl(id) {
+    // test
     return 'https://item.taobao.com/item.htm?id=' + id
   }
 
